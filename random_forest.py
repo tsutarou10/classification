@@ -3,14 +3,14 @@ import numpy as np
 from sklearn.metrics import recall_score,precision_score,f1_score
 from sklearn.model_selection import train_test_split
 
-class RandomForest:
+class SVM:
 
 	def set_features_labels(self):
 		labels = np.load("all_labels.npy")
 		features = np.load("all_features.npy")
 
 		return features,labels
-
+		
 	def random_forest(self):
 		features,labels = self.set_features_labels()
 		scores1 = []
