@@ -13,12 +13,16 @@ class SVM:
 		return features,labels
 		
 	def svm(self):
-		features,labels = self.set_features_labels()
+		
 		scores1 = []
 		scores2 = []
 		scores3 = []
 
 		for k in range(10):
+			features,labels = self.set_features_labels()
+			indices = np.random.permutation(X.shape[0])
+			features = features[indices]
+			labels = labels[indices]
 			trX,teX,trY,teY = train_test_split(features,labels,test_size = 0.30,random_state = 1)
 
 			clf = OneVsRestClassifier(LinearSVC())

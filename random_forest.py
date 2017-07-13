@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.metrics import recall_score,precision_score,f1_score
 from sklearn.model_selection import train_test_split
 
-class SVM:
+class RandomForest:
 
 	def set_features_labels(self):
 		labels = np.load("all_labels.npy")
@@ -12,12 +12,15 @@ class SVM:
 		return features,labels
 		
 	def random_forest(self):
-		features,labels = self.set_features_labels()
 		scores1 = []
 		scores2 = []
 		scores3 = []
 
 		for k in range(10):
+			features,labels = self.set_features_labels()
+			indices = np.random.permutation(X.shape[0])
+			features = features[indices]
+			labels = labels[indices]
 			trX,teX,trY,teY = train_test_split(features,labels,test_size = 0.30,random_state = 1)
 
 			clf = RandomForestClassifier()
